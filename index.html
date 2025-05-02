@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel de Gestão de Diárias - Controle e monitoramento financeiro eficiente para profissionais.">
+    <meta name="keywords" content="Gestão de Diárias, Controle Financeiro, Relatórios, Exportação">
+    <meta name="author" content="Vitinho G6">
+    <title>Gestão de Diárias | Meu Painel</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- PDFLib for PDF generation -->
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <!-- XLSX for Excel export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- External stylesheet for modular CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Menu de Navegação">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-coins" aria-hidden="true"></i> Diárias Trabalho</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item active" id="dashboardBtn" role="menuitem" aria-label="Ir para o Dashboard">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" id="newReportBtn" role="menuitem" aria-label="Adicionar Nova Diária">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                    <span>Nova Diária</span>
+                </button>
+                <button class="nav-item" id="reportsBtn" role="menuitem" aria-label="Visualizar Relatórios">
+                    <i class="fas fa-file-alt" aria-hidden="true"></i>
+                    <span>Relatórios</span>
+                </button>
+                <button class="nav-item" id="receiptsBtn" role="menuitem" aria-label="Visualizar Comprovantes">
+                    <i class="fas fa-receipt" aria-hidden="true"></i>
+                    <span>Comprovantes</span>
+                </button>
+                <button class="nav-item" id="settingsBtn" role="menuitem" aria-label="Abrir Configurações">
+                    <i class="fas fa-cog" aria-hidden="true"></i>
+                    <span>Configurações</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Minhas Diárias</h1>
+                <div class="user-menu">
+                    <button class="notification-btn" aria-label="Ver notificações">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                    </button>
+                    <div class="user-avatar" id="userAvatar" aria-label="Avatar do Usuário">JD</div>
+                </div>
+            </header>
+
+            <section class="summary-cards">
+                <article class="card fade-in" aria-live="polite" role="status">
+                    <header>
+                        <h2 class="card-title">Total Este Mês</h2>
+                        <div class="card-icon primary">
+                            <i class="fas fa-wallet" aria-hidden="true"></i>
+                        </div>
+                    </header>
+                    <p id="monthlyTotal" class="card-value">R$ 0,00</p>
+                    <p id="monthlyComparison" class="card-description">+0% em relação ao mês passado</p>
+                </article>
+
+                <article class="card fade-in" aria-live="polite" role="status">
+                    <header>
+                        <h2 class="card-title">Diárias Registradas</h2>
+                        <div class="card-icon success">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        </div>
+                    </header>
+                    <p id="totalReports" class="card-value">0</p>
+                    <p id="pendingApprovals" class="card-description">0 pendentes de aprovação</p>
+                </article>
+
+                <article class="card fade-in" aria-live="polite" role="status">
+                    <header>
+                        <h2 class="card-title">Média Diária</h2>
+                        <div class="card-icon warning">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        </div>
+                    </header>
+                    <p id="dailyAverage" class="card-value">R$ 0,00</p>
+                    <p id="averageComparison" class="card-description">Abaixo do limite diário</p>
+                </article>
+            </section>
+
+            <section class="daily-reports">
+                <article class="report-form fade-in" id="dailyReportForm">
+                    <h2 class="section-title">
+                        <i class="fas fa-plus-circle" aria-hidden="true"></i> Adicionar Diária
+                    </h2>
+                    <form>
+                        <!-- Form fields -->
+                        <label for="report-date">Data:</label>
+                        <input type="date" id="report-date" required>
+
+                        <!-- Additional fields and buttons -->
+                    </form>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="script.js" defer></script>
+</body>
+</html>
